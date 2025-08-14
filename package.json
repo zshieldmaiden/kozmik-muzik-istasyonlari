@@ -1,0 +1,57 @@
+{
+  "name": "kozmik-muzik-istasyonlari",
+  "version": "1.0.0",
+  "description": "Modern Vue 3 ile geliştirilmiş kozmik temalı müzik keşif platformu",
+  "author": "Kozmik Müzik Ekibi",
+  "license": "MIT",
+  "keywords": [
+    "vue3",
+    "music",
+    "cosmic",
+    "space",
+    "music-discovery",
+    "turkish",
+    "offline-mode",
+    "weather-api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kullaniciadi/kozmik-muzik-istasyonlari.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kullaniciadi/kozmik-muzik-istasyonlari/issues"
+  },
+  "homepage": "https://github.com/kullaniciadi/kozmik-muzik-istasyonlari#readme",
+  "private": false,
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "server": "node server/ollama-proxy.cjs",
+    "music-api": "node server/music-api.js",
+    "setup-db": "node server/database-setup.js",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tsparticles/slim": "^3.9.1",
+    "@tsparticles/vue3": "^3.0.1",
+    "axios": "^1.11.0",
+    "better-sqlite3": "^12.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "node-fetch": "^3.3.2",
+    "sqlite3": "^5.1.7",
+    "vue": "^3.5.18"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "vite": "^7.0.6",
+    "vite-plugin-vue-devtools": "^8.0.0"
+  }
+}
