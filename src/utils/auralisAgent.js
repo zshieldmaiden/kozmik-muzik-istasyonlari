@@ -1,7 +1,7 @@
 // Auralis (Harmonia kaptanı) AI ajanı için istemci yardımcı fonksiyonları
-// Ollama proxy üzerinden yanıt üretir.
+// Groq API üzerinden ultra-hızlı yanıt üretir.
 
-import { ollamaGenerate } from './ollamaClient'
+import { ollamaGenerate, GROQ_MODELS } from './groqClient'
 
 function normalizeMood(mood) {
   const m = String(mood || '').toLowerCase()
@@ -66,7 +66,12 @@ Geçmiş şarkılar: ${JSON.stringify(history)}
 
 Yanıtını yukarıdaki dekoratif formatta ver ve tamamen Türkçe yaz.`
 
-  // Model ismini burada değiştirebilirsiniz (ör: 'llama3:8b', 'mistral', 'llama2', ...)
-  const text = await ollamaGenerate({ prompt, model: 'mistral', temperature: 0.7 })
+  // Groq model kullanımı - ultra-hızlı inference
+  const text = await ollamaGenerate({ 
+    prompt, 
+    model: GROQ_MODELS.LLAMA3_8B, 
+    temperature: 0.7,
+    system: "Sen Auralis, kozmik müzik istasyonlarının yapay zeka asistanısın. Türkçe yanıt ver ve müzik önerileri yap."
+  })
   return text
 }
