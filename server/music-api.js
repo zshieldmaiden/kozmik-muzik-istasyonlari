@@ -3,10 +3,13 @@ import cors from 'cors';
 import { MusicDatabaseService } from './database-service.js';
 
 const app = express();
-const PORT = process.env.PORT || 8790;
+const PORT = process.env.PORT || 10000; // Render varsayılan portu
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://*.netlify.app', 'https://*.onrender.com'],
+  credentials: true
+}));
 app.use(express.json());
 
 // Ana endpoint - API bilgileri
