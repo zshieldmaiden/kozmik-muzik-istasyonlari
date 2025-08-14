@@ -1,3 +1,6 @@
+# 🌌 Kozmik Müzik İstasyonları 
+
+Modern Vue 3 ile geliştirilmiş kozmik temalı müzik keşif platformu. Ruh haline göre şarkı önerileri ve etkileşimli kozmik istasyonlar.<<< HEAD
 # � Kozmik Müzik İstasyonları 
 
 Modern Vue 3 ile geliştirilmiş kozmik temalı müzik keşif platformu. Ruh haline göre şarkı önerileri ve etkileşimli kozmik istasyonlar.
