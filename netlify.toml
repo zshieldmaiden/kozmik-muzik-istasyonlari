@@ -1,0 +1,31 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Environment variables için notlar
+# Netlify dashboard'da aşağıdaki environment variables'ları ekleyin:
+# VITE_OPENWEATHER_API_KEY=your_api_key
+# VITE_SPOTIFY_CLIENT_ID=your_client_id (opsiyonel)
+# VITE_SPOTIFY_CLIENT_SECRET=your_client_secret (opsiyonel)
+
+[dev]
+  command = "npm run dev"
+  port = 5173
+  publish = "dist"
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

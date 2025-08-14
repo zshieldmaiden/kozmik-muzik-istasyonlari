@@ -19,9 +19,16 @@ export default defineConfig(({ mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       },
     },
-    define: {
-      // Sadece ihtiyaç duyulan ortam değişkenini tanımlayın
-      'import.meta.env.VITE_OPENWEATHER_KEY': JSON.stringify(env.VITE_OPENWEATHER_KEY || 'c99d2fa61ce79aa4756128dea10d53e5')
+    // Production build optimizations
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ['vue'],
+            utils: ['axios']
+          }
+        }
+      }
     }
   }
 })
