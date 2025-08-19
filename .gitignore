@@ -48,3 +48,6 @@ temp/
 *.tmp
 *.backup
 *.bak
+
+# Local Netlify folder
+.netlify

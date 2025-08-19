@@ -185,7 +185,6 @@ function getStationTooltip(stationId) {
     supernova: 'Yıldızın son patlaması! High-energy rock ve metal\'in explosive sahnesi.',
     quark: 'Atomaltı parçacıkların jazz club\'ı! Sofistike jazz ve blues sahnesi.',
     comet: 'Uzun yolculukların folk hikayesi! Acoustic ve storytelling sahnesi.',
-    pulsar: 'Dönen nötron yıldızının ritmik sinyalleri! Techno ve electronic beats sahnesi.',
     cryochill: 'Buzul gezegen! Chill-out ve ambient\'in soğuk atmosferi.'
   }
   return tooltips[stationId] || 'Kozmik müzik deneyimi!'
@@ -677,7 +676,6 @@ onUnmounted(() => {
 .supernova-station { border-color: #e67e22; }
 .quark-station { border-color: #f1c40f; }
 .comet-station { border-color: #2ecc71; }
-.pulsar-station { border-color: #9b59b6; }
 .cryochill-station { border-color: #1abc9c; }
 
 .earth-station:hover { box-shadow: 0 0 20px #3498db; }
@@ -693,7 +691,6 @@ onUnmounted(() => {
 .supernova-station:hover { box-shadow: 0 0 20px #e67e22; }
 .quark-station:hover { box-shadow: 0 0 20px #f1c40f; }
 .comet-station:hover { box-shadow: 0 0 20px #2ecc71; }
-.pulsar-station:hover { box-shadow: 0 0 20px #9b59b6; }
 .cryochill-station:hover { box-shadow: 0 0 20px #1abc9c; }
 
 /* Play button */

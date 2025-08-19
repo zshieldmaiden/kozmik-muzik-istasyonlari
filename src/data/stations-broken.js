@@ -174,6 +174,19 @@ export const stations = [
     popularity: 8
   },
   {
+    id: 'pulsar-beat-station',
+    name: 'Pulsar',
+    emoji: '🔊',
+    description: 'Drum & Bass, hızlı ritimler. Nabız gibi atan ışık hüzmeleri.',
+    genres: ['drum & bass', 'dnb', 'electronic'],
+    moods: ['energetic', 'intense'],
+    weather: [
+      { condition: 'clear', tempRange: [10, 30] },
+      { condition: 'night', tempRange: [0, 20] }
+    ],
+    popularity: 8
+  },
+  {
     id: 'cryochill-station',
     name: 'Uranüs',
     emoji: '❄️',

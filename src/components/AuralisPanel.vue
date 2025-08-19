@@ -278,12 +278,23 @@ async function ask() {
   loading.value = true
   error.value = ''
   answer.value = ''
+  
+  console.log('🎵 Auralis Panel: Starting AI request...')
+  console.log('🎵 User text:', userText.value)
+  
   try {
     // Geçmiş şarkıları diziye çevir
     const historyArr = history.value.split(',').map(s => s.trim()).filter(Boolean)
     const weatherStr = getWeatherString()
+    
+    console.log('🎵 Request params:', { userText: userText.value, weather: weatherStr, history: historyArr })
+    
     answer.value = await generateAuralisResponse({ userText: userText.value, weather: weatherStr, history: historyArr })
+    
+    console.log('🎵 AI Response received:', answer.value)
+    
   } catch (e) {
+    console.error('🎵 Auralis Panel error:', e)
     error.value = String(e?.message || e)
   } finally {
     loading.value = false

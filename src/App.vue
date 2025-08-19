@@ -21,89 +21,17 @@
       <!-- Ana İçerik Alanı - 2 Kolon Düzen -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full h-full">
         
-        <!-- SOL TARAF - Kozmik Müzik İstasyonları (Yarım Ekran) -->
+        <!-- SOL TARAF - Kozmik Müzik İstasyonları (Tam Ekran) -->
         <div class="glass-panel m-1 h-full flex flex-col">
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+            <h3 class="text-xl font-bold text-white flex items-center gap-2" style="opacity: 0.15;">
               🚀 Kozmik Müzik İstasyonları 
-              <span class="text-sm text-purple-300">{{ cosmicStations.length }}</span>
             </h3>
-            <button @click="showCosmicStations = !showCosmicStations" 
-                    class="px-3 py-1 bg-purple-600/30 hover:bg-purple-500/40 rounded-full text-sm transition-all">
-              {{ showCosmicStations ? '📖' : '🌟' }}
-            </button>
           </div>
           
-          <!-- İstasyon Kartları - Orta Boyutlu + Müzik Önerileri -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 flex-1 overflow-auto" v-if="showCosmicStations">
-            
-            <!-- CosmicStations Test - Background animasyonlar için -->
-            <div class="col-span-full mb-4">
-              <CosmicStations :weather="weather || defaultWeather" />
-            </div>
-            
-            <div v-for="station in cosmicStations" :key="station.id" class="flex flex-col">
-              <!-- İstasyon Kartı -->
-              <div @click="selectStation(station.id)"
-                   class="station-card-medium group cursor-pointer mb-2"
-                   :class="{ 'ring-2 ring-purple-400': selectedStation === station.id }">
-                <div class="station-icon-medium" :class="`${station.id}-gradient`">
-                  {{ station.emoji }}
-                </div>
-                <h4 class="station-name-medium">{{ station.name }}</h4>
-                <p class="station-desc-medium">{{ getStationDescription(station.id) }}</p>
-              </div>
-              
-              <!-- Müzik Önerileri - Her Kartın Altında -->
-              <div class="bg-gradient-to-br from-purple-900/15 to-blue-900/15 rounded-lg p-2 border border-purple-500/10">
-                <div class="flex items-center justify-between mb-2">
-                  <h5 class="text-xs font-medium text-purple-300 flex items-center gap-1">
-                    🎵 Öneriler
-                  </h5>
-                  <div class="flex gap-1">
-                    <button @click="refreshStationPlaylist(station.id)" 
-                            class="px-2 py-0.5 bg-purple-600/30 hover:bg-purple-500/40 rounded text-xs transition-all"
-                            title="Playlist'i Yenile">
-                      🔄
-                    </button>
-                    <button @click="testSpotifySearch(station.id)" 
-                            class="px-2 py-0.5 bg-green-600/30 hover:bg-green-500/40 rounded text-xs transition-all"
-                            title="Spotify Test">
-                      🎧
-                    </button>
-                  </div>
-                </div>
-                <div class="space-y-1 max-h-32 overflow-y-auto">
-                  <div v-for="(track, index) in getStationPlaylist(station.id).slice(0, 3)" :key="index"
-                       class="flex items-center gap-2 p-1.5 bg-white/3 rounded hover:bg-white/8 transition-all cursor-pointer text-xs">
-                    <div class="w-5 h-5 bg-gradient-to-br from-purple-500 to-blue-500 rounded flex items-center justify-center text-xs font-bold">
-                      {{ index + 1 }}
-                    </div>
-                    <div class="flex-1 min-w-0">
-                      <p class="font-medium text-white truncate text-xs">{{ track.title }}</p>
-                      <p class="text-purple-200 truncate text-xs opacity-80">{{ track.artist }}</p>
-                    </div>
-                  </div>
-                  <button v-if="getStationPlaylist(station.id).length > 3"
-                          class="w-full text-xs text-purple-300 hover:text-purple-200 py-1 text-center">
-                    +{{ getStationPlaylist(station.id).length - 3 }} daha fazla...
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Kompakt İstasyon Listesi -->
-          <div v-else class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2 flex-1 overflow-auto">
-            <div v-for="station in cosmicStations" :key="station.id" 
-                 @click="selectStation(station.id)"
-                 class="station-mini-card-small group cursor-pointer"
-                 :class="{ 'ring-1 ring-purple-400': selectedStation === station.id }">
-              <div class="station-icon-small" :class="`${station.id}-gradient`">
-                {{ station.emoji }}
-              </div>
-              <span class="station-name-small">{{ station.name }}</span>
-            </div>
+          <!-- CosmicStations Component - Tam Boy -->
+          <div class="flex-1 overflow-auto">
+            <CosmicStations :weather="weather || defaultWeather" />
           </div>
         </div>
 
@@ -129,10 +57,12 @@
             <MusicPlayer :mood="selectedMood" :weather="weather" @gamification-updated="onGamificationUpdated" />
           </div>
 
-          <!-- Spotify Player Kartı -->
+          <!-- Spotify Player Kartı - Şimdilik devre dışı -->
+          <!-- 
           <div class="glass-panel m-1 flex-1">
             <SpotifyPlayer />
           </div>
+          -->
         </div>
 
       </div>
@@ -231,7 +161,7 @@ import StarCanvas from './components/StarCanvas.vue'
 import WeatherDisplay from './components/WeatherDisplay.vue'
 import MoodSelector from './components/MoodSelector.vue'
 import MusicPlayer from './components/MusicPlayer.vue'
-import SpotifyPlayer from './components/SpotifyPlayer.vue'
+// import SpotifyPlayer from './components/SpotifyPlayer.vue' // Şimdilik devre dışı
 import SpaceTimeline from './components/SpaceTimeline.vue'
 import CosmicStations from './components/CosmicStations.vue'
 import GalaxyMeteorMusicPlayer from './components/GalaxyMeteorMusicPlayer.vue'
@@ -240,13 +170,12 @@ import AuralisPanel from './components/AuralisPanel.vue'
 import { fetchWeather, defaultWeather } from './api/weather'
 import { getPassengerPoints, isSpecialStationUnlocked } from './utils/gamification'
 import { musicDatabase } from '@/data/musicDatabase.js'
-import * as spotifyApi from '@/api/spotify.js'
+// import * as spotifyApi from '@/api/spotify.js' // Şimdilik devre dışı
 
 const weather = ref(null)
 const selectedMood = ref('happy')
 const showSpaceTimeline = ref(false)
 const showLeaderboard = ref(false)
-const showCosmicStations = ref(true)
 const selectedStation = ref(null)
 
 // Global müzik player store
@@ -258,30 +187,15 @@ const specialStationUnlocked = ref(false)
 // Dinamik müzik veritabanı (başlangıçta statik veritabanından kopyala)
 const dynamicMusicDatabase = ref([...musicDatabase])
 
-// Galaktik İstasyonlar
-const baseStations = [
-  { id: 'earth', name: 'Dünya', emoji: '🌍', description: 'Ana gezegen müzikleri' },
-  { id: 'mars', name: 'Mars', emoji: '🔴', description: 'Enerjik rock ve elektronik' },
-  { id: 'venus', name: 'Venüs', emoji: '💫', description: 'Romantik ve yumuşak melodiler' },
-  { id: 'jupiter', name: 'Jüpiter', emoji: '🪐', description: 'Görkemli orkestral müzik' },
-  { id: 'sun', name: 'Güneş', emoji: '☀️', description: 'Enerjik ve ışıltılı müzikler' },
-  { id: 'neptune', name: 'Neptün', emoji: '🌊', description: 'Derin ambient sesler' },
-  { id: 'milkyway', name: 'Samanyolu', emoji: '🌌', description: 'Galaktik synthwave' },
-  { id: 'andromeda', name: 'Andromeda', emoji: '✨', description: 'Deneysel uzay müziği' },
-  { id: 'blackhole', name: 'Kara Delik', emoji: '⚫', description: 'Karanlık ambient' }
-]
-
+// Galaktik İstasyonlar - Sadece Kozmik İstasyonlar data'sından gelecek
 const cosmicStations = computed(() => {
-  const list = [...baseStations]
+  // Özel istasyon kilidini kontrol et
   if (specialStationUnlocked.value) {
-    list.push({ 
-      id: 'quasar', 
-      name: 'Kuasar', 
-      emoji: '🌟', 
-      description: 'Ultra enerjili EDM arena' 
-    })
+    console.log('� Kuasar istasyonu açıldı!')
   }
-  return list
+  
+  // Artık baseStations kullanmıyoruz, stations.js'den alıyoruz
+  return []  // Boş array döndür çünkü CosmicStations component'i kendi data'sını kullanıyor
 })
 
 function setMood(mood) {
@@ -291,17 +205,13 @@ function setMood(mood) {
 
 function selectStation(stationId) {
   selectedStation.value = stationId
-  // İstasyona göre mood ayarla
-  const station = cosmicStations.value.find(s => s.id === stationId)
-  if (station) {
-    console.log(`${station.name} istasyonu seçildi`)
-  }
+  console.log(`${stationId} istasyonu seçildi`)
 }
 
 function addSongsToStation(event) {
   const { songs, station, timestamp } = event
   
-  console.log(`${songs.length} şarkı ${getStationDisplayName(station)} durağına ekleniyor...`)
+  console.log(`${songs.length} şarkı ${station} istasyonuna ekleniyor...`)
   
   // Her şarkıyı veritabanına ekle
   songs.forEach((song, index) => {
@@ -309,16 +219,16 @@ function addSongsToStation(event) {
       id: `ai-${station}-${Date.now()}-${index}`,
       title: song.title,
       artist: song.artist,
-      genre: getStationGenre(station),
+      genre: 'cosmic',
       year: new Date().getFullYear(),
       spotifyQuery: `${song.title} ${song.artist}`,
-      moods: getStationMoods(station),
+      moods: ['cosmic'],
       weather: {
-        conditions: getStationWeatherConditions(station),
+        conditions: ['all'],
         tempRange: [10, 30]
       },
       stations: [station],
-      popularity: 8, // AI önerileri yüksek popülerlik
+      popularity: 8,
       source: 'ai-recommendation',
       timestamp: timestamp
     }
@@ -337,184 +247,6 @@ function addSongsToStation(event) {
       console.log(`⚠️ Zaten mevcut: ${song.title} - ${song.artist}`)
     }
   })
-}
-
-function getStationDisplayName(stationId) {
-  const stationNames = {
-    earth: 'Dünya',
-    mars: 'Mars', 
-    venus: 'Venüs',
-    jupiter: 'Jüpiter',
-    sun: 'Güneş',
-    neptune: 'Neptün',
-    milkyway: 'Samanyolu',
-    andromeda: 'Andromeda',
-    blackhole: 'Kara Delik'
-  }
-  return stationNames[stationId] || stationId
-}
-
-function getStationGenre(stationId) {
-  const stationGenres = {
-    earth: 'pop',
-    mars: 'rock',
-    venus: 'romantic',
-    jupiter: 'orchestral',
-    sun: 'energetic',
-    neptune: 'ambient',
-    milkyway: 'synthwave',
-    andromeda: 'experimental',
-    blackhole: 'ambient'
-  }
-  return stationGenres[stationId] || 'pop'
-}
-
-function getStationMoods(stationId) {
-  const stationMoods = {
-    earth: ['happy', 'energetic', 'neutral'],
-    mars: ['energetic', 'powerful', 'intense'],
-    venus: ['romantic', 'calm', 'loving'],
-    jupiter: ['epic', 'powerful', 'dramatic'],
-    sun: ['energetic', 'bright', 'uplifting'],
-    neptune: ['calm', 'meditative', 'ambient'],
-    milkyway: ['nostalgic', 'dreamy', 'cosmic'],
-    andromeda: ['experimental', 'futuristic', 'innovative'],
-    blackhole: ['calm', 'meditative', 'ambient']
-  }
-  return stationMoods[stationId] || ['happy']
-}
-
-function getStationWeatherConditions(stationId) {
-  const stationWeather = {
-    earth: ['clear', 'clouds'],
-    mars: ['clear', 'dust'],
-    venus: ['rain', 'storms'],
-    jupiter: ['storms', 'extreme'],
-    sun: ['sunny', 'bright'],
-    neptune: ['oceanic', 'blue'],
-    milkyway: ['starry', 'night'],
-    andromeda: ['galactic', 'distant'],
-    blackhole: ['dark', 'mysterious']
-  }
-  return stationWeather[stationId] || ['clear']
-}
-
-function getStationDescription(stationId) {
-  const station = baseStations.find(s => s.id === stationId)
-  return station ? station.description : 'Kozmik müzik deneyimi'
-}
-
-function getSelectedStationName() {
-  if (!selectedStation.value) return ''
-  const station = cosmicStations.value.find(s => s.id === selectedStation.value)
-  return station ? station.name : ''
-}
-
-function getStationPlaylist(stationId) {
-  // dynamicMusicDatabase'den istasyona göre şarkıları filtrele
-  try {
-    const stationTracks = dynamicMusicDatabase.value
-      .filter(track => track.stations.includes(stationId))
-      .sort((a, b) => {
-        // AI önerilerini üstte göster, sonra popülerlik sırasına göre
-        if (a.source === 'ai-recommendation' && b.source !== 'ai-recommendation') return -1
-        if (b.source === 'ai-recommendation' && a.source !== 'ai-recommendation') return 1
-        return b.popularity - a.popularity
-      })
-      .slice(0, 8) // Daha fazla şarkı göster (AI önerileri dahil)
-      .map(track => ({
-        title: track.title,
-        artist: track.artist,
-        id: track.id,
-        year: track.year,
-        genre: track.genre,
-        spotifyQuery: track.spotifyQuery,
-        popularity: track.popularity
-      }))
-    
-    return stationTracks.length > 0 ? stationTracks : getDefaultPlaylist(stationId)
-  } catch (error) {
-    console.error('Müzik veritabanı yüklenemedi:', error)
-    return getDefaultPlaylist(stationId)
-  }
-}
-
-function getDefaultPlaylist(stationId) {
-  // Fallback playlist'ler
-  const playlists = {
-    earth: [
-      { title: "Happy", artist: "Pharrell Williams" },
-      { title: "Shape of You", artist: "Ed Sheeran" },
-      { title: "Uptown Funk", artist: "Mark Ronson ft. Bruno Mars" },
-      { title: "Here Comes the Sun", artist: "The Beatles" },
-      { title: "What a Wonderful World", artist: "Louis Armstrong" }
-    ],
-    mars: [
-      { title: "Life on Mars?", artist: "David Bowie" },
-      { title: "Space Oddity", artist: "David Bowie" },
-      { title: "Rocket Man", artist: "Elton John" },
-      { title: "Harder Better Faster Stronger", artist: "Daft Punk" },
-      { title: "Get Lucky", artist: "Daft Punk ft. Pharrell Williams" }
-    ],
-    venus: [
-      { title: "Perfect", artist: "Ed Sheeran" },
-      { title: "All of Me", artist: "John Legend" },
-      { title: "Thinking Out Loud", artist: "Ed Sheeran" },
-      { title: "La Vie En Rose", artist: "Édith Piaf" },
-      { title: "Fly Me to the Moon", artist: "Frank Sinatra" }
-    ],
-    jupiter: [
-      { title: "Jupiter", artist: "Gustav Holst" },
-      { title: "Also sprach Zarathustra", artist: "Richard Strauss" },
-      { title: "Interstellar Main Theme", artist: "Hans Zimmer" },
-      { title: "Ode to Joy", artist: "Beethoven" },
-      { title: "Imperial March", artist: "John Williams" }
-    ],
-    sun: [
-      { title: "Here Comes the Sun", artist: "The Beatles" },
-      { title: "Good Day Sunshine", artist: "The Beatles" },
-      { title: "Sunshine", artist: "Keane" },
-      { title: "Blinding Lights", artist: "The Weeknd" },
-      { title: "Walking on Sunshine", artist: "Katrina and the Waves" }
-    ],
-    neptune: [
-      { title: "Aqueous Transmission", artist: "Incubus" },
-      { title: "Weightless", artist: "Marconi Union" },
-      { title: "Ocean", artist: "John Butler Trio" },
-      { title: "Deep Blue Day", artist: "Brian Eno" },
-      { title: "Porcelain", artist: "Moby" }
-    ],
-    milkyway: [
-      { title: "Midnight City", artist: "M83" },
-      { title: "Turbo Killer", artist: "Carpenter Brut" },
-      { title: "Sunset", artist: "The Midnight" },
-      { title: "A Real Hero", artist: "College & Electric Youth" },
-      { title: "Starlight", artist: "Muse" }
-    ],
-    andromeda: [
-      { title: "Andromeda", artist: "Weyes Blood" },
-      { title: "Cosmic Dancer", artist: "T. Rex" },
-      { title: "Svefn-g-englar", artist: "Sigur Rós" },
-      { title: "Echoes", artist: "Pink Floyd" },
-      { title: "Space Age Bachelor Pad Music", artist: "Stereolab" }
-    ],
-    blackhole: [
-      { title: "Black Hole Sun", artist: "Soundgarden" },
-      { title: "The Sound of Silence", artist: "Simon & Garfunkel" },
-      { title: "Hurt", artist: "Johnny Cash" },
-      { title: "Mad World", artist: "Gary Jules" },
-      { title: "Breathe Me", artist: "Sia" }
-    ],
-    quasar: [
-      { title: "Levels", artist: "Avicii" },
-      { title: "Bangarang", artist: "Skrillex" },
-      { title: "Titanium", artist: "David Guetta ft. Sia" },
-      { title: "Animals", artist: "Martin Garrix" },
-      { title: "Strobe", artist: "Deadmau5" }
-    ]
-  }
-  
-  return playlists[stationId] || []
 }
 
 function onGamificationUpdated() {
@@ -574,49 +306,6 @@ onMounted(async () => {
     }
   }
 })
-
-// Test Fonksiyonları
-function refreshStationPlaylist(stationId) {
-  console.log(`🔄 ${stationId} istasyonu playlist'i yenileniyor...`)
-  // Bu fonksiyon reactive olduğu için otomatik yenilenecek
-  const tracks = getStationPlaylist(stationId)
-  console.log(`✅ ${tracks.length} şarkı yüklendi:`, tracks)
-}
-
-async function testSpotifySearch(stationId) {
-  try {
-    console.log(`🎧 ${stationId} istasyonu için Spotify testi başlatılıyor...`)
-    
-    // İstasyona ait şarkıları al
-    const tracks = getStationPlaylist(stationId)
-    if (tracks.length === 0) {
-      console.warn('Bu istasyon için şarkı bulunamadı')
-      return
-    }
-    
-    // İlk şarkıyı Spotify'da arat
-    const firstTrack = tracks[0]
-    console.log(`🔍 Spotify'da aranan: "${firstTrack.spotifyQuery || firstTrack.title + ' ' + firstTrack.artist}"`)
-    
-    // Spotify API'yi test et (eğer yapılandırılmışsa)
-    const isConfigured = await spotifyApi.isConfigured()
-    if (isConfigured) {
-      console.log('✅ Spotify API yapılandırılmış!')
-      // Gerçek arama yapılabilir
-    } else {
-      console.log('⚠️ Spotify API henüz yapılandırılmamış. API anahtarı gerekli.')
-    }
-    
-    // Veritabanı istatistikleri
-    console.log(`📊 ${stationId} istasyon istatistikleri:`)
-    console.log(`- Toplam şarkı: ${tracks.length}`)
-    console.log(`- Türler: ${[...new Set(tracks.map(t => t.genre))].join(', ')}`)
-    console.log(`- Ortalama popülerlik: ${(tracks.reduce((sum, t) => sum + (t.popularity || 0), 0) / tracks.length).toFixed(1)}`)
-    
-  } catch (error) {
-    console.error('Spotify test hatası:', error)
-  }
-}
 </script>
 
 <style>
@@ -852,17 +541,14 @@ async function testSpotifySearch(stationId) {
   color: white;
 }
 
-/* İstasyon Gradyentleri */
-.earth-gradient { background: linear-gradient(135deg, #22c55e, #16a34a); }
+/* İstasyon Gradyentleri - Sadece CosmicStations için */
+.sol-gradient { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
 .mars-gradient { background: linear-gradient(135deg, #ef4444, #dc2626); }
 .venus-gradient { background: linear-gradient(135deg, #f59e0b, #d97706); }
-.jupiter-gradient { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
-.sun-gradient { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+.saturn-gradient { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
 .neptune-gradient { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-.milkyway-gradient { background: linear-gradient(135deg, #d946ef, #c026d3); }
 .andromeda-gradient { background: linear-gradient(135deg, #06b6d4, #0891b2); }
-.blackhole-gradient { background: linear-gradient(135deg, #374151, #1f2937); }
-.quasar-gradient { 
+.kuasar-gradient { 
   background: conic-gradient(from 0deg, #ff0080, #ff8000, #80ff00, #0080ff, #8000ff, #ff0080);
   animation: spin 3s linear infinite;
 }

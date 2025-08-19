@@ -183,50 +183,60 @@ const generatePlatformUrl = () => {
 </script>
 
 <style scoped>
-/* %25 küçültülmüş MusicPlatforms container */
+/* Panel yüksekliği küçültülmüş MusicPlatforms container */
 .music-platforms-container {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  border-radius: 1rem;
-  padding: 1.5rem;
+  border-radius: 1.5rem; /* Normal border radius */
+  padding: 0.5rem; /* Biraz daha fazla padding */
   border: 1px solid rgba(255, 255, 255, 0.2);
   animation: float 6s ease-in-out infinite;
   position: relative;
   z-index: 1;
+  max-height: 80px; /* Panel yüksekliği artırıldı */
+  overflow: hidden; /* Taşan içerik gizlendi */
 }
 
 .platform-title {
   color: white;
-  font-size: 1.25rem;
+  font-size: 0.8rem; /* Okunabilir boyut */
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem; /* Az margin */
   text-align: center;
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* %25 küçültülmüş platforms grid */
+/* Panel yüksekliğine uygun platforms grid */
 .platforms-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
-  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* %50 genişletildi: 160px → 240px */
+  gap: 0.5rem; /* Daha fazla gap */
   max-width: 100%;
+  max-height: 40px; /* Grid yüksekliği artırıldı */
+  overflow: hidden;
+  justify-content: center; /* Grid içeriğini ortala */
+  justify-items: center; /* Grid elemanlarını ortala */
 }
 
-/* %25 küçültülmüş platform cards */
+/* Panel yüksekliğine uygun platform cards */
 .platform-card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(5px);
-  border-radius: 0.75rem;
-  padding: 0.75rem;
+  border-radius: 0.5rem; /* Normal border radius */
+  padding: 0.4rem; /* Daha fazla padding */
   border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   transition: all 0.3s ease;
-  aspect-ratio: 1;
+  aspect-ratio: 7.5; /* %50 daha geniş: 5 → 7.5 */
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Yan yana düzen */
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
+  gap: 0.2rem; /* Daha fazla gap */
+  max-height: 35px; /* Kart yüksekliği artırıldı */
+  width: 100%; /* Kartın tam genişlik alması */
+  max-width: 300px; /* Maximum genişlik sınırı */
+  margin: 0 auto; /* Kartı ortala */
 }
 
 .platform-card:hover {
@@ -235,21 +245,16 @@ const generatePlatformUrl = () => {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* %25 küçültülmüş platform logos */
+/* Panel boyutuna uygun icon ve logo */
 .platform-logo {
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 1.5rem; /* Daha büyük boyut */
+  height: 1.5rem; /* Daha büyük boyut */
+  flex-shrink: 0;
 }
 
-/* %25 küçültülmüş platform icons */
 .platform-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  color: white;
+  font-size: 1.2rem; /* Daha büyük boyut */
+  opacity: 0.8;
 }
 
 .spotify-card .platform-logo {
@@ -279,13 +284,13 @@ const generatePlatformUrl = () => {
 .platform-info h4 {
   color: white;
   font-weight: 600;
-  font-size: 0.875rem;
-  margin-bottom: 0.25rem;
+  font-size: 0.8rem; /* Daha büyük ve okunabilir */
+  margin-bottom: 0.1rem; /* Biraz margin */
 }
 
 .platform-info p {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 0.75rem;
+  font-size: 0.7rem; /* Daha büyük ve okunabilir */
 }
 
 /* Modal Styles */

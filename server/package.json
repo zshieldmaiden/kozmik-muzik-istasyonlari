@@ -3,16 +3,18 @@
   "version": "1.0.0",
   "description": "Kozmik Müzik İstasyonları Backend API",
   "main": "music-api.js",
+  "type": "module",
   "scripts": {
     "start": "node music-api.js",
     "dev": "nodemon music-api.js",
     "setup": "node database-setup.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
     "cors": "^2.8.5",
-    "sqlite3": "^5.1.6",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "node-fetch": "^2.7.0",
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
@@ -20,7 +22,12 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "keywords": ["music", "api", "cosmic", "stations"],
+  "keywords": [
+    "music",
+    "api",
+    "cosmic",
+    "stations"
+  ],
   "author": "Kozmik Müzik İstasyonları",
   "license": "MIT"
 }

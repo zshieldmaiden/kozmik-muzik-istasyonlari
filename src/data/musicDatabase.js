@@ -1068,22 +1068,6 @@ export const musicDatabase = [
     stations: ['comet-disco-hub'],
     popularity: 10
   },
-  // Pulsar Beat Station
-  {
-    id: 'pulsar-001',
-    title: 'Timewarp',
-    artist: 'Sub Focus',
-    genre: 'drum & bass',
-    year: 2008,
-    spotifyQuery: 'Timewarp Sub Focus',
-    moods: ['energetic', 'intense'],
-    weather: {
-      conditions: ['clear', 'night'],
-      tempRange: [10, 25]
-    },
-    stations: ['pulsar-beat-station'],
-    popularity: 9
-  },
   // CryoChill Station
   {
     id: 'cryo-001',

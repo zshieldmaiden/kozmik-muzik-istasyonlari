@@ -1,0 +1,11 @@
+# Render için build script
+build = "npm run build"
+
+# Static site olarak deploy
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

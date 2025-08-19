@@ -45,7 +45,7 @@ export async function generateAuralisResponse({ userText, weather, history }) {
 🚀 Kozmik Mesaj: [Motivasyonlu kısa mesaj]
 
 İSTASYONLAR:
-🌟 KUASAR (enerji), 🌍 DÜNYA (popüler), 💖 VENÜS (romantik), 🔴 MARS (rock), 🎭 JÜPİTER (orkestra), 💍 SATÜRN (mistik), 🌊 NEPTÜN (derin), 🌌 SAMANYOLU (karışık), 🚀 ANDROMEDA (alternatif), ⚫ KARADELIK (karanlık), ⭐ İKİLİYILDIZ (düet),  URANÜS (benzersiz), 🌈 AURORA (neşeli), 🕳️ KUASARİ KARADELIK (karanlık rock), 💥 SÜPERNOVA (şok)
+🌟 KUASAR (enerji), 🌍 DÜNYA (popüler), 💖 VENÜS (romantik), 🔴 MARS (rock), 🎭 JÜPİTER (orkestra), 💍 SATÜRN (mistik), 🌊 NEPTÜN (derin), 🌌 SAMANYOLU (karışık), 🚀 ANDROMEDA (alternatif), ⚫ KARADELIK (karanlık), ⭐ İKİLİYILDIZ (düet), 💫 PULSAR (hipnotik), 💎 URANÜS (benzersiz), 🌈 AURORA (neşeli), 🕳️ KUASARİ KARADELIK (karanlık rock), 💥 SÜPERNOVA (şok)
 
 Kullanıcı: "${userText}"
 Hava: ${weather}
@@ -53,16 +53,11 @@ Geçmiş: ${JSON.stringify(history)}
 
 Yukarıdaki FORMATLA yanıt ver! Türkçe!`
 
-  console.log('🚀 AURALIS: Using GROQ API (not Ollama!) with Llama-3.1-8B model')
-
   // Groq API ile ultra-hızlı yanıt üretimi
   const text = await ollamaGenerate({ 
     prompt, 
-    model: GROQ_MODELS.LLAMA3_8B, 
+    model: GROQ_MODELS.MIXTRAL_8X7B, 
     temperature: 0.8 
   })
-  
-  console.log('🚀 AURALIS: Groq response received!')
-  
   return text
 }

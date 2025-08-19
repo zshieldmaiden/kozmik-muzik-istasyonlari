@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-4xl mx-auto mt-4 space-y-3.5">
+  <div class="w-full max-w-4xl mx-auto mt-2 space-y-2">
     <!-- Playlist Kontrolleri -->
     <div class="playlist-controls glassmorphism rounded-2xl p-4">
       <div class="flex flex-wrap gap-2 justify-center">
@@ -62,11 +62,8 @@
       @playlist-deleted="onPlaylistDeleted"
     />
 
-    <!-- Müzik Platformları -->
-    <MusicPlatforms 
-      :current-songs="songs" 
-      :current-mood="props.mood"
-    />
+    <!-- Playlist Oluştur - Spotify ve YouTube -->
+    <MusicPlatforms />
 
     <!-- Şarkı Listesi -->
     <div class="songs-section">
@@ -96,9 +93,9 @@ import { ref, watch, onMounted } from 'vue'
 import { useMusicPlayer } from '../utils/musicPlayerStore.js'
 const emit = defineEmits(['gamification-updated'])
 import SongCard from './SongCard.vue'
-import MusicPlatforms from './MusicPlatforms.vue'
 import AdvancedSearch from './AdvancedSearch.vue'
 import SavedPlaylists from './SavedPlaylists.vue'
+import MusicPlatforms from './MusicPlatforms.vue'
 import { getRecommendations, getSessionRecommendationsCount } from '../utils/musicEngine'
 import { addPassengerPoint, addStationStamp } from '@/utils/gamification'
 import MusicApiClient from '../api/musicApi.js'
@@ -640,18 +637,19 @@ onMounted(() => {
 
 .playlist-controls {
   animation: float 6s ease-in-out infinite;
+  padding: 0.5rem !important; /* Küçültülmüş padding */
 }
 
 .control-button {
-  padding: 1rem 1.5rem;
-  border-radius: 9999px;
+  padding: 0.5rem 1rem; /* Küçültülmüş padding */
+  border-radius: 20px; /* Küçültülmüş border radius */
   color: white;
-  font-size: 0.875rem;
+  font-size: 0.75rem; /* Küçültülmüş font */
   font-weight: 500;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem; /* Küçültülmüş gap */
 }
 
 .control-button:hover {
@@ -659,7 +657,7 @@ onMounted(() => {
 }
 
 .control-button .icon {
-  font-size: 1rem;
+  font-size: 0.875rem; /* Küçültülmüş icon boyutu */
 }
 
 .daily {
