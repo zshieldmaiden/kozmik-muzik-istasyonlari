@@ -1,12 +1,14 @@
 {
   "name": "kozmik-muzik-backend",
-  "version": "1.0.0",
-  "description": "Kozmik Müzik İstasyonları Backend API",
-  "main": "music-api.js",
+  "version": "2.0.0",
+  "description": "Kozmik Müzik İstasyonları Full-Stack Backend API with AI",
+  "main": "production-api.js",
   "type": "module",
   "scripts": {
-    "start": "node music-api.js",
-    "dev": "nodemon music-api.js",
+    "start": "node production-api.js",
+    "dev": "nodemon production-api.js",
+    "simple": "node simple-api.js",
+    "legacy": "node music-api.js",
     "setup": "node database-setup.js"
   },
   "dependencies": {

@@ -4,18 +4,18 @@ services:
     env: node
     plan: free
     buildCommand: cd server && npm install
-    startCommand: cd server && node music-api.js
+    startCommand: cd server && npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
-        value: "8790"
+        value: "10000"
       - key: GROQ_API_KEY
         sync: false
       - key: OPENWEATHER_KEY
         sync: false
-    healthCheckPath: /api
+    healthCheckPath: /health
     routes:
       - type: rewrite
-        source: /*
+        source: /api/*
         destination: /api/$1
