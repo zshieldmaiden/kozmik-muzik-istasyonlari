@@ -17,7 +17,7 @@
 # Environment variables for production
 [context.production.environment]
   NODE_ENV = "production"
-  VITE_API_BASE_URL = "https://kozmik-muzik-backend.onrender.com"
+  VITE_API_BASE_URL = "https://kozmik-muzik-istasyonlari.onrender.com"
   VITE_GROQ_API_KEY = ""
 
 # Development environment

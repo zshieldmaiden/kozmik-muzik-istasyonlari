@@ -20,6 +20,7 @@ const corsOptions = {
     'http://localhost:5174', 
     'http://localhost:5173',
     'https://kozmik-muzik-istasyonlari.netlify.app',
+    'https://kozmik-muzik-istasyonlari.onrender.com',
     'https://your-netlify-domain.netlify.app'
   ],
   credentials: true,

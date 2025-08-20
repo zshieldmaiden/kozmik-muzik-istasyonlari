@@ -3,8 +3,8 @@ services:
     name: kozmik-muzik-backend
     env: node
     plan: free
-    buildCommand: cd server && npm install
-    startCommand: cd server && npm start
+    buildCommand: cd server && npm install && npm cache clean --force
+    startCommand: cd server && node production-api.js
     envVars:
       - key: NODE_ENV
         value: production
@@ -15,7 +15,9 @@ services:
       - key: OPENWEATHER_KEY
         sync: false
     healthCheckPath: /health
-    routes:
-      - type: rewrite
-        source: /api/*
-        destination: /api/$1
+    disk:
+      name: ephemeral
+      size: 1024
+    scaling:
+      minInstances: 1
+      maxInstances: 1
