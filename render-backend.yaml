@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: kozmik-muzik-backend
+    env: node
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: cd server && node music-api.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "8790"
+      - key: GROQ_API_KEY
+        sync: false
+      - key: OPENWEATHER_KEY
+        sync: false
+    healthCheckPath: /api
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /api/$1

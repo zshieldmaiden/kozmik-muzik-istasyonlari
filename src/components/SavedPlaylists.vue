@@ -262,8 +262,11 @@ async function loadSavedPlaylists() {
     const playlistMap = new Map()
     
     allSongs.forEach(song => {
+      // song.id'yi string'e çevir
+      const songId = String(song.id || '')
+      
       // AI önerileri için playlist oluştur
-      if (song.id.startsWith('ai-')) {
+      if (songId.startsWith('ai-')) {
         const key = `ai-suggestions-${song.stations[0] || 'general'}`
         if (!playlistMap.has(key)) {
           playlistMap.set(key, {
@@ -279,7 +282,7 @@ async function loadSavedPlaylists() {
       }
       
       // Custom şarkılar için playlist oluştur
-      if (song.id.startsWith('custom-')) {
+      if (songId.startsWith('custom-')) {
         const key = `custom-playlist-${song.stations[0] || 'general'}`
         if (!playlistMap.has(key)) {
           playlistMap.set(key, {
